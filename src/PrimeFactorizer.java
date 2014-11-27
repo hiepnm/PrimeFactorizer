@@ -13,14 +13,13 @@ public class PrimeFactorizer {
 
 	private static void initialize() {
 		factorIndex = 0;
-		factorRegister = new int[2];
+		factorRegister = new int[100];
 	}
 	
 	private static void findPrimeFactors(int multiple) {
-		for (; multiple % 2 == 0; multiple /= 2)
-			factorRegister[factorIndex++] = 2;
-		if (multiple != 1) 
-			factorRegister[factorIndex++] = multiple;
+		for (int factor = 2; multiple != 1; factor++)
+			for (; multiple % factor == 0; multiple /= factor)
+				factorRegister[factorIndex++] = factor;
 	}
 	
 	private static int[] copyToResult() {
